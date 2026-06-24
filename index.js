@@ -2,43 +2,44 @@ const mineflayer = require('mineflayer');
 const http = require('http');
 
 // CONFIGURACIÓN DE TU SERVIDOR
-const SERVER_IP = 'SurviZ.aternos.me'; // <-- Coloca aquí tu IP de Aternos
-const BOT_NAME = 'BotEstable';               // Nombre del bot en el servidor
+const SERVER_IP = 'TU_SERVIDOR.aternos.me'; // <-- Reemplaza con tu IP de Aternos
+const BOT_NAME = 'BotSimple247';            // El nombre de tu bot
 
 function createBot() {
     const bot = mineflayer.createBot({
         host: SERVER_IP,
         port: 25565,
-        username: Botsito
-        version: '1.21.1',             // Deja en false para detección automática corregida
-        checkTimeoutInterval: 90000 // Eleva el límite de espera a 90s para evitar los "timed out"
+        username: BOT_NAME,
+        version: false,              // Auto-detectar versión estable
+        checkTimeoutInterval: 90000  // Tolerancia extra de 90 segundos para evitar lag
     });
 
     bot.on('login', () => {
-        console.log('¡El bot ha ingresado exitosamente al servidor!');
+        console.log('¡El bot ha entrado con éxito al servidor!');
     });
 
     bot.on('spawn', () => {
-        console.log('El bot se encuentra activo en el entorno.');
+        console.log('El bot está estático y seguro en el mundo.');
     });
 
+    // Auto-reconexión automática si se cae
     bot.on('end', () => {
-        console.log('Conexión finalizada con el servidor. Reintentando en 30 segundos...');
+        console.log('Conexión perdida. Reintentando conectar en 30 segundos...');
         setTimeout(createBot, 30000); 
     });
 
-    bot.on('error', (err) => console.log(`Error interno del bot: ${err.message}`));
-    bot.on('kick', (reason) => console.log(`Bot expulsado del juego por: ${reason}`));
+    bot.on('error', (err) => console.log(`Error del bot: ${err.message}`));
+    bot.on('kick', (reason) => console.log(`Bot expulsado por: ${reason}`));
 }
 
-// Configuración del servidor web compatible con la plataforma
+// Servidor web obligatorio para que Render no tire error de puerto
 const port = process.env.PORT || 10000;
 http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write("Servidor del bot activo y respondiendo.");
+    res.write("Bot AFK en modo ultra-estable conectado.");
     res.end();
 }).listen(port, '0.0.0.0', () => {
-    console.log(`Peticiones web redirigidas al puerto asignado: ${port}`);
+    console.log(`Servidor web activo en puerto ${port}`);
 });
 
 crea
