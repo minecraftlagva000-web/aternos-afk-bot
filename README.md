@@ -1,2 +1,6 @@
 # aternos-afk-bot
-N
+Aternos AFK BOT
+
+1.21.1
+
+Instructions inside the code.
