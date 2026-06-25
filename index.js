@@ -3,7 +3,7 @@ const http = require('http');
 
 // CONFIGURACIÓN DE TU SERVIDOR
 const SERVER_IP = 'SurviZ.aternos.me'; // <-- Reemplaza con tu IP de Aternos
-const BOT_NAME = 'BotSimple247';            // El nombre de tu bot
+const BOT_NAME = 'SurviX';            // El nombre de tu bot
 
 function createBot() {
     const bot = mineflayer.createBot({
